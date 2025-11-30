@@ -201,7 +201,6 @@ Main menu
 py-lab3-algorythm_package/
 ├── main.py                 # Главный CLI интерфейс
 ├── README.md               # Этот файл
-├── EXPLANATION.md          # Подробное объяснение кода
 ├── pyproject.toml          # Конфигурация проекта
 ├── requirements.txt        # Зависимости
 │
