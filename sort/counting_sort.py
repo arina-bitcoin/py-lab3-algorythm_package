@@ -1,0 +1,75 @@
+def counting_sort(a: list[int]) -> list[int]:
+    if not a:
+        return []
+    min_val = min(a)
+    max_val = max(a)
+    count_size = max_val - min_val + 1
+    count = [0] * count_size
+    for num in a:
+        count[num - min_val] += 1
+    result = []
+    for i in range(count_size):
+        result.extend([i + min_val] * count[i])
+    return result
+
+
+
+if __name__ == "__main__":
+    print("Testing Counting Sort")
+    print("=" * 50)
+    
+    # Тест 1: Обычный случай
+    test1 = [4, 2, 2, 8, 3, 3, 1]
+    print(f"Test 1 - Basic: {test1}")
+    result1 = counting_sort(test1)
+    print(f"Sorted: {result1}")
+    print(f"Correct: {result1 == sorted(test1)}")
+    print()
+    
+    # Тест 2: Отрицательные числа
+    test2 = [4, -2, 2, -8, 3, 3, 1]
+    print(f"Test 2 - With negatives: {test2}")
+    result2 = counting_sort(test2)
+    print(f"Sorted: {result2}")
+    print(f"Correct: {result2 == sorted(test2)}")
+    print()
+    
+    # Тест 3: Один элемент
+    test3 = [5]
+    print(f"Test 3 - Single element: {test3}")
+    result3 = counting_sort(test3)
+    print(f"Sorted: {result3}")
+    print(f"Correct: {result3 == sorted(test3)}")
+    print()
+    
+    # Тест 4: Пустой список
+    test4 = []
+    print(f"Test 4 - Empty list: {test4}")
+    result4 = counting_sort(test4)
+    print(f"Sorted: {result4}")
+    print(f"Correct: {result4 == sorted(test4)}")
+    print()
+    
+    # Тест 5: Все одинаковые элементы
+    test5 = [7, 7, 7, 7, 7]
+    print(f"Test 5 - All same: {test5}")
+    result5 = counting_sort(test5)
+    print(f"Sorted: {result5}")
+    print(f"Correct: {result5 == sorted(test5)}")
+    print()
+    
+    # Тест 6: Большой диапазон
+    test6 = [1, 100, 50, 25, 75]
+    print(f"Test 6 - Large range: {test6}")
+    result6 = counting_sort(test6)
+    print(f"Sorted: {result6}")
+    print(f"Correct: {result6 == sorted(test6)}")
+    print()
+    
+    # Тест 7: Стабильность (проверка с помощью stable версии)
+    test7 = [1, 2, 1, 3, 2]  # Два элемента '1' и два элемента '2'
+    print(f"Test 7 - Stability test: {test7}")
+    result7 = counting_sort(test7)
+    print(f"Stable sorted: {result7}")
+    print(f"Correct: {result7 == sorted(test7)}")
+
