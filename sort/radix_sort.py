@@ -4,29 +4,27 @@ def radix_sort(a: list[int], base: int = 10) -> list[int]:
     if base < 2:
         raise ValueError("Base must be at least 2")
 
-    def sort_non_negative(nums: list[int]) -> list[int]:
-        if not nums:
-            return []
-        output = nums.copy()
-        max_val = max(output)
-        exp = 1
-        while max_val // exp > 0:
-            buckets = [[] for _ in range(base)]
-            for num in output:
-                digit = (num // exp) % base
-                buckets[digit].append(num)
-            output = [value for bucket in buckets for value in bucket]
-            exp *= base
-        return output
+    buckets = [[] for _ in range(base)]
+    current = 0
+    max_a = max(a)
 
-    positives = [value for value in a if value >= 0]
-    negatives = [-value for value in a if value < 0]
+    while max_a > 0:
+        for i in a:
+            buckets[(i // base ** current) % base].append(i)
 
-    sorted_pos = sort_non_negative(positives)
-    sorted_neg = sort_non_negative(negatives)
-    sorted_neg = [-value for value in reversed(sorted_neg)]
+        k = 0
+        for i in range(base):
+            for j in buckets[i]:
+                a[k] = j
+                k += 1
+            buckets[i].clear()
 
-    return sorted_neg + sorted_pos
+        max_a //= base
+        cur += 1
+
+
+    return a
+
 
 
 

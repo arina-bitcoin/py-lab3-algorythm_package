@@ -1,4 +1,5 @@
 from typing import Any, Callable, TypeVar
+from random import choice
 
 from ._keycmp import decorate_with_key_cmp, undecorate
 
@@ -8,7 +9,7 @@ T = TypeVar("T")
 def quick_sort(a: list[int]) -> list[int]:
     if len(a) <= 1:
         return a
-    center = a[len(a) // 2]
+    center = a[choice(range(len(a)))]
     left = [x for x in a if x < center]
     middle = [x for x in a if x == center]
     right = [x for x in a if x > center]
